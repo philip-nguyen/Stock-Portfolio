@@ -1,6 +1,15 @@
 # Stock-Portfolio
 Using 5 different investment strategies, determine which stocks to invest in
 
+## Installation
+Make sure to install the dependencies
+
+**PyQt5**
+`pip install PyQt5==5.9.2`
+
+**yfinance**
+`pip install yfinance`
+
 ## Git workflow
 **Create your own branch**
 
