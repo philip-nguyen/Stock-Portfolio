@@ -1,4 +1,7 @@
 # Main Function
+import gui
+import sys
+from PyQt5.QtWidgets import QApplication
 
 
 def print_hi(name):
@@ -7,6 +10,13 @@ def print_hi(name):
 
 
 # Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+# if __name__ == '__main__':
+#     print_hi('PyCharm')
 
+# initialize
+app = QApplication(sys.argv)
+
+win = gui.StockPortfolio()
+win.UI()
+
+sys.exit(app.exec_())   # compulsory line to "cleanly exit"
