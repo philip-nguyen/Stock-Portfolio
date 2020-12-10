@@ -33,15 +33,23 @@ def valueInvesting():
     stockSymbol3 = "CVS"
     stockSymbol3 = stockSymbol3.upper()
 
+    # Drug developer owns various blockbuster drugs and is acquiring more.
+    stockSymbol4 = "ABBV"
+    stockSymbol4 = stockSymbol4.upper()
+
+    # They produce and sell various types of ingredients and operate worldwide.
+    stockSymbol5 = "INGR"
+    stockSymbol5 = stockSymbol5.upper()
+
     try:
         print("-------------------------- Stock 1 --------------------------")
-        division = float(investmentAmount*0.50)
-        print("Money division: (60%) $", division, sep="")
+        division = float(investmentAmount*0.40)
+        print("Money division: (40%) $", division, sep="")
         print("Generating data from yfinance...")
         printStockInfo(stockSymbol1)
 
         print("-------------------------- Stock 2 --------------------------")
-        division = float(investmentAmount*0.30)
+        division = float(investmentAmount*0.20)
         print("Money division: (20%) $", division, sep="")
         print("Generating data from yfinance...")
         printStockInfo(stockSymbol2)
@@ -51,6 +59,18 @@ def valueInvesting():
         print("Money division: (20%) $", division, sep="")
         print("Generating data from yfinance...")
         printStockInfo(stockSymbol3)
+
+        print("-------------------------- Stock 4 --------------------------")
+        division = float(investmentAmount*0.10)
+        print("Money division: (10%) $", division, sep="")
+        print("Generating data from yfinance...")
+        printStockInfo(stockSymbol4)
+
+        print("-------------------------- Stock 5 --------------------------")
+        division = float(investmentAmount*0.10)
+        print("Money division: (10%) $", division, sep="")
+        print("Generating data from yfinance...")
+        printStockInfo(stockSymbol5)
 
     except:
         print("-------------------------- ERROR: Invalid Ticker Symbol --------------------------")
