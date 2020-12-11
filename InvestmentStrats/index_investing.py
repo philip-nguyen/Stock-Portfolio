@@ -1,42 +1,17 @@
 # Index Investing
 import yfinance as yf
-import sys
+import datetime
+
+"""
+    The invest function takes in an investment amount
+    and returns a string var
+"""
 
 
-class Logger():
-    stdout = sys.stdout
-    messages = []
-
-    def start(self):
-        sys.stdout = self
-
-    def stop(self):
-        sys.stdout = self.stdout
-
-    def write(self, text):
-        self.messages.append(text)
-
-
-def indexInvesting():
+def invest(investmentAmount):
     print("-------------------------- Index Investing --------------------------\n")
+    # Index Investing - Stocks mirror the collection of companies and performance of market indexes
 
-    # Get user input for the investment amount
-    while True:
-        try:
-            investmentAmount = int(
-                input("\nEnter the amount you want to invest (Minimum $5000 USD): "))
-        except:
-            print("Please enter a valid dollar amount!")
-            continue
-
-        if investmentAmount < 5000:
-            print("Minimum investment amount is $5000 USD!")
-        else:
-            break
-
-    log = Logger()
-    log.start()
-    # Selected stocks for Index Investing
     # Flagship index on the National Stock Exchange of India.
     stockSymbol1 = "^NSEI"
     stockSymbol1 = stockSymbol1.upper()
@@ -60,36 +35,46 @@ def indexInvesting():
     try:
         print("-------------------------- Stock 1 --------------------------")
         division = float(investmentAmount*0.25)
-        print("Money division: (25%) $", division, sep="")
-        printStockInfo(stockSymbol1)
+        output = "Money division: (25%) $" + str(division) + "\n"
+        print("Generating data from yfinance...")
+        output += printStockInfo(stockSymbol1) + "\n"
 
         print("-------------------------- Stock 2 --------------------------")
         division = float(investmentAmount*0.25)
-        print("Money division: (25%) $", division, sep="")
-        printStockInfo(stockSymbol2)
+        output += "Money division: (25%) $" + str(division) + "\n"
+        print("Generating data from yfinance...")
+        output += printStockInfo(stockSymbol2) + "\n"
 
         print("-------------------------- Stock 3 --------------------------")
         division = float(investmentAmount*0.125)
-        print("Money division: (12.5%) $", division, sep="")
-        printStockInfo(stockSymbol3)
+        output += "Money division: (12.5%) $" + str(division) + "\n"
+        print("Generating data from yfinance...")
+        output += printStockInfo(stockSymbol3) + "\n"
 
         print("-------------------------- Stock 4 --------------------------")
         division = float(investmentAmount*0.125)
-        print("Money division: (12.5%) $", division, sep="")
-        printStockInfo(stockSymbol4)
+        output += "Money division: (12.5%) $" + str(division) + "\n"
+        print("Generating data from yfinance...")
+        output += printStockInfo(stockSymbol4) + "\n"
 
         print("-------------------------- Stock 5 --------------------------")
         division = float(investmentAmount*0.25)
-        print("Money division: (25%) $", division, sep="")
-        printStockInfo(stockSymbol5)
+        output += "Money division: (25%) $" + str(division) + "\n"
+        print("Generating data from yfinance...")
+        output += printStockInfo(stockSymbol5) + "\n"
+        output += "\n\n"
 
     except:
         print("-------------------------- ERROR: Invalid Ticker Symbol --------------------------")
+        return "Error in Index Investing :(\n"
 
-    log.stop()
-    message = " ".join(log.messages)
-    return message
-    #print("\nOUPUT\n", message)
+    return output
+
+
+"""
+    The printStockInfo function takes a string stockSymbol
+    and returns a string var
+"""
 
 
 def printStockInfo(stockSymbol):
@@ -97,11 +82,9 @@ def printStockInfo(stockSymbol):
 
     # Print the Company's name and ticker symbol
     stockInfo = stock.info
-    print(f"{stockInfo['shortName']} ({stockSymbol})")
+    output = f"{stockInfo['shortName']} ({stockSymbol})"
 
     # Get the current stock value
-    # hist = stock.history(period="2d")
-    # stockCurrent = float(hist['Open'])
     stockCurrent = float(stockInfo['open'])
 
     # Get the previous close value
@@ -111,12 +94,36 @@ def printStockInfo(stockSymbol):
     valueChange = round(stockCurrent - stockPreviousClose, 2)
     percentChange = round((valueChange / stockPreviousClose) * 100, 2)
     changeDirection = "+" if (valueChange > 0) else ""
-    print(f'${stockCurrent:3g} {changeDirection}{valueChange} ({changeDirection}{percentChange}%)', "\n")
+    output += (f'\n${stockCurrent:3g} {changeDirection}{valueChange} ({changeDirection}{percentChange}%)\n')
 
     weeklyTrend = stock.history(period="5d")
-    print("Weekly Trend:")
-    print(weeklyTrend, '\n')
+    output += "Weekly Trend:\n"
+    output += weeklyTrend.to_string() + '\n'
+
+    return output
 
 
-print("--------------Output------------")
-print(indexInvesting())
+def getStockInfo(stockSymbol):
+    # convert symbol to upper case
+    stockSymbol = stockSymbol.upper()
+    try:
+        stock = yf.Ticker(stockSymbol)
+        # print the current time
+        date = datetime.datetime.now()
+        print(date.strftime("%c"))  # %a %m %d %X %Z %Y
+
+        # print the Company's name and ticker symbol
+        stockInfo = stock.info
+        print(stockInfo)
+        print(f"{stockInfo['longName']} ({stockSymbol})")
+
+        # Calculate and display the current price, value change and percent change
+        stockPreviousClose = float(stockInfo['previousClose'])
+        stockCurrent = float(stockInfo['open'])
+        valueChange = round(stockCurrent - stockPreviousClose, 2)
+        percentChange = round((valueChange / stockPreviousClose) * 100, 2)
+        changeDirection = "+" if (valueChange > 0) else ""
+        print(
+            f'${stockCurrent} {changeDirection}{valueChange} ({changeDirection}{percentChange}%)')
+    except:
+        print("---ERROR: Invalid Ticker Symbol---")

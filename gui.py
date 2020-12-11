@@ -7,6 +7,7 @@ from InvestmentStrats import (ethical_investing, growth_investing, index_investi
 import threading
 import sys
 
+
 class StockPortfolio(QWidget):
 
     def __init__(self):
@@ -30,7 +31,7 @@ class StockPortfolio(QWidget):
         # win = QMainWindow()
         # set the dimensions and window title
         # setGeometry(X, Y, width, height)
-        self.setGeometry(50, 100, 640, 700)
+        self.setGeometry(50, 100, 725, 700)
         self.setWindowTitle("Stock Portfolio")
 
         # Add Label and LineEdit
@@ -100,30 +101,35 @@ class StockPortfolio(QWidget):
             self.output = ''
             if self.EthicalCheckBox.isChecked():
                 # Start thread to do yfinance API calls
-                thread_e = threading.Thread(target=self.setOutput, args=(ethical_investing.invest,))
+                thread_e = threading.Thread(
+                    target=self.setOutput, args=(ethical_investing.invest,))
                 thread_e.start()
                 thread_e.join()
 
             if self.GrowthCheckBox.isChecked():
                 # TODO: change args to growth_investing.invest function
-                thread_g = threading.Thread(target=self.setOutput, args=(ethical_investing.invest,))
+                thread_g = threading.Thread(
+                    target=self.setOutput, args=(ethical_investing.invest,))
                 thread_g.start()
                 thread_g.join()
 
             if self.IndexCheckBox.isChecked():
-                thread_i = threading.Thread(target=self.setOutput, args=(index_investing.indexInvesting,))
+                thread_i = threading.Thread(
+                    target=self.setOutput, args=(index_investing.invest,))
                 thread_i.start()
                 thread_i.join()
 
             if self.QualityCheckBox.isChecked():
                 # TODO: change args to quality_investing.invest function
-                thread_q = threading.Thread(target=self.setOutput, args=(ethical_investing.invest,))
+                thread_q = threading.Thread(
+                    target=self.setOutput, args=(ethical_investing.invest,))
                 thread_q.start()
                 thread_q.join()
 
             if self.ValueCheckBox.isChecked():
                 # TODO: change args to value_investing.invest function
-                thread_v = threading.Thread(target=self.setOutput, args=(ethical_investing.invest,))
+                thread_v = threading.Thread(
+                    target=self.setOutput, args=(value_investing.invest,))
                 thread_v.start()
                 thread_v.join()
 
@@ -141,4 +147,3 @@ class StockPortfolio(QWidget):
     def showTextAreaResult(self, output):
         self.outputArea.insertPlainText(output)
         self.outputArea.setFont(QFont('Monopace', 10, QFont.Monospace))
-
