@@ -25,19 +25,20 @@ def qualityInvesting():
     stockSymbol1 = "V"
     stockSymbol1 = stockSymbol1.upper()
 
-    # Axon - stun gun and law enforcement body cam producer 
+    # Amazon - E-commerce, cloud computing, digital streaming and AI technologies 
     stockSymbol2 = "AMZN"
     stockSymbol2 = stockSymbol2.upper()
 
-    # Shopify - E-commerce operations platform for merchants
+    # Microsoft - Develops, manufactures, licenses, supports and sells computer software, consumer electronics, pcs and related services
     stockSymbol3 = "MSFT"
     stockSymbol3 = stockSymbol3.upper()
 
-    # Ellie Mae - Mortage-industry software provider
+    # Salesforce - Provides customer relationship management service, marketing automation analytics and application development 
     stockSymbol4 = "CRM"
     stockSymbol4 = stockSymbol4.upper()
 
-    # Paycom - HR department manager
+    # Nike - American corporation engaged in the design, development, manufacturing and worldwide marketing and sales of footwear,
+    # apparel, equipment, accessories, and services
     stockSymbol5 = "NKE"
     stockSymbol5 = stockSymbol5.upper()
 
