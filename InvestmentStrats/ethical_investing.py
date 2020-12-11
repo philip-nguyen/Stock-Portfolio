@@ -7,6 +7,8 @@ import datetime
     and returns a string var
 """
 def invest(investmentAmount):
+
+    print("-------------------------- Ethical Investing --------------------------")
     # Ethical Investing - investing in companies that promote
     # ethical practices and ethical products.
     # Choices include prominent wind energy companies
@@ -75,7 +77,7 @@ def printStockInfo(stockSymbol):
     weeklyTrend = stock.history(period="5d")
     output += "Weekly Trend:\n"
     output += weeklyTrend.to_string() + '\n'
-    print(weeklyTrend)
+
     return output
 
 def getStockInfo(stockSymbol):

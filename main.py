@@ -17,6 +17,6 @@ def print_hi(name):
 app = QApplication(sys.argv)
 
 win = gui.StockPortfolio()
-win.UI()
+
 
 sys.exit(app.exec_())   # compulsory line to "cleanly exit"
