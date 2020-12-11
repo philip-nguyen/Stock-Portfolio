@@ -1,24 +1,16 @@
 # Quality Investing
 
 import yfinance as yf
+import datetime
 
+def invest(invest)
 
-def qualityInvesting():
-    print("-------------------------- Value Investing --------------------------\n")
-
-    # Get user input for the investment amount
-    while True:
-        try:
-            investmentAmount = int(
-                input("\nEnter the amount you want to invest (Minimum $5000 USD): "))
-        except:
-            print("Please enter a valid dollar amount!")
-            continue
-
-        if investmentAmount < 5000:
-            print("Minimum investment amount is $5000 USD!")
-        else:
-            break
+    print("-------------------------- Quality Investing --------------------------")
+    # Quality Investment Stocks Traits
+    # Good Management - Ability to see opportunities and capitalize on them
+    # Strong Balance Sheet - Ability to withstand adverse conditions or unexpected challenges 
+    # Enterprise Life Cycle - In the global economy this company is always reinvesting in new technology 
+    # Economic Moat - Barriers to entry for other competitors, advantages this particular has over other companies
 
     # Selected stocks for Growth Investing
     # Visa - Global payments technology that facilitates electronic funds transfers 
@@ -46,36 +38,40 @@ def qualityInvesting():
     try:
         print("-------------------------- Stock 1 --------------------------")
         division = float(investmentAmount*0.2)
-        print("Money division: (20%) $", division, sep="")
+        output = "Money division: (20%) $" + str(division) + "\n"
         print("Generating data from yfinance...")
-        printStockInfo(stockSymbol1)
+        output += printStockInfo(stockSymbol1) + "\n"
 
         print("-------------------------- Stock 2 --------------------------")
         division = float(investmentAmount*0.2)
-        print("Money division: (20%) $", division, sep="")
+        output += "Money division: (20%) $" + str(division) + "\n"
         print("Generating data from yfinance...")
-        printStockInfo(stockSymbol2)
+        output += printStockInfo(stockSymbol2) + "\n"
 
         print("-------------------------- Stock 3 --------------------------")
         division = float(investmentAmount*0.2)
-        print("Money division: (20%) $", division, sep="")
+        output += "Money division: (20%) $" + str(division) + "\n"
         print("Generating data from yfinance...")
-        printStockInfo(stockSymbol3)
+        output += printStockInfo(stockSymbol3) + "\n"
 
         print("-------------------------- Stock 4 --------------------------")
         division = float(investmentAmount*0.2)
-        print("Money division: (20%) $", division, sep="")
+        output += "Money division: (20%) $" + str(division) + "\n"
         print("Generating data from yfinance...")
-        printStockInfo(stockSymbol4)
+        output += printStockInfo(stockSymbol4) + "\n"
 
         print("-------------------------- Stock 5 --------------------------")
         division = float(investmentAmount*0.2)
-        print("Money division: (20%) $", division, sep="")
+        output += "Money division: (20%) $" + str(division) + "\n"
         print("Generating data from yfinance...")
-        printStockInfo(stockSymbol5)
+        output += printStockInfo(stockSymbol5) + "\n"
+        output += "\n\n"
 
     except:
         print("-------------------------- ERROR: Invalid Ticker Symbol --------------------------")
+        return "Error in Quality Investing \n"
+
+    return output 
 
 
 def printStockInfo(stockSymbol):
@@ -83,7 +79,7 @@ def printStockInfo(stockSymbol):
 
     # Print the Company's name and ticker symbol
     stockInfo = stock.info
-    print(f"{stockInfo['shortName']} ({stockSymbol})")
+    output = (f"{stockInfo['shortName']} ({stockSymbol})")
 
     # Get the current stock value
     stockCurrent = float(stockInfo['open'])
@@ -95,11 +91,11 @@ def printStockInfo(stockSymbol):
     valueChange = round(stockCurrent - stockPreviousClose, 2)
     percentChange = round((valueChange / stockPreviousClose) * 100, 2)
     changeDirection = "+" if (valueChange > 0) else ""
-    print(f'${stockCurrent:3g} {changeDirection}{valueChange} ({changeDirection}{percentChange}%)', "\n")
+    output += (f'\n${stockCurrent:3g} {changeDirection}{valueChange} ({changeDirection}{percentChange}%)', "\n")
 
     weeklyTrend = stock.history(period="5d")
-    print("Weekly Trend:")
-    print(weeklyTrend, '\n')
+    output += ("Weekly Trend:\n")
+    output += weeklyTrend.toString() + '\n'
 
+    return output
 
-qualityInvesting()
