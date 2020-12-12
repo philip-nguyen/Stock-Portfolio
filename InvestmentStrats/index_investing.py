@@ -12,6 +12,8 @@ def invest(investmentAmount):
     print("-------------------------- Index Investing --------------------------\n")
     # Index Investing - Stocks mirror the collection of companies and performance of market indexes
 
+    output = "------------ Index Investing ------------\n"
+    output += f'Amount for Strategy: ${investmentAmount}\n'
     # Flagship index on the National Stock Exchange of India.
     stockSymbol1 = "^NSEI"
     stockSymbol1 = stockSymbol1.upper()
@@ -35,7 +37,7 @@ def invest(investmentAmount):
     try:
         print("-------------------------- Stock 1 --------------------------")
         division = float(investmentAmount*0.25)
-        output = "Money division: (25%) $" + str(division) + "\n"
+        output += "Money division: (25%) $" + str(division) + "\n"
         print("Generating data from yfinance...")
         output += printStockInfo(stockSymbol1) + "\n"
 

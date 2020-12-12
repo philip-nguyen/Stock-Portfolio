@@ -12,6 +12,8 @@ def invest(investmentAmount):
     print("-------------------------- Value Investing --------------------------\n")
     # Value Investing - investing in stocks that appear to be trading for less than their actual value.
 
+    output = "------------ Value Investing ------------\n"
+    output += f'Amount for Strategy: ${investmentAmount}\n'
     # Consumer credit and insurance business that has a fairly steady performance and has been on the rise.
     stockSymbol1 = "OMF"
     stockSymbol1 = stockSymbol1.upper()
@@ -35,7 +37,7 @@ def invest(investmentAmount):
     try:
         print("-------------------------- Stock 1 --------------------------")
         division = float(investmentAmount*0.40)
-        output = "Money division: (40%) $" + str(division) + "\n"
+        output += "Money division: (40%) $" + str(division) + "\n"
         print("Generating data from yfinance...")
         output += printStockInfo(stockSymbol1) + "\n"
 

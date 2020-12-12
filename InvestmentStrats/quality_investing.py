@@ -3,7 +3,8 @@
 import yfinance as yf
 import datetime
 
-def invest(invest)
+
+def invest(investmentAmount):
 
     print("-------------------------- Quality Investing --------------------------")
     # Quality Investment Stocks Traits
@@ -12,6 +13,8 @@ def invest(invest)
     # Enterprise Life Cycle - In the global economy this company is always reinvesting in new technology 
     # Economic Moat - Barriers to entry for other competitors, advantages this particular has over other companies
 
+    output = "------------ Quality Investing ------------\n"
+    output += f'Amount for Strategy: ${investmentAmount}\n'
     # Selected stocks for Growth Investing
     # Visa - Global payments technology that facilitates electronic funds transfers 
     stockSymbol1 = "V"
@@ -38,7 +41,7 @@ def invest(invest)
     try:
         print("-------------------------- Stock 1 --------------------------")
         division = float(investmentAmount*0.2)
-        output = "Money division: (20%) $" + str(division) + "\n"
+        output += "Money division: (20%) $" + str(division) + "\n"
         print("Generating data from yfinance...")
         output += printStockInfo(stockSymbol1) + "\n"
 
@@ -91,11 +94,11 @@ def printStockInfo(stockSymbol):
     valueChange = round(stockCurrent - stockPreviousClose, 2)
     percentChange = round((valueChange / stockPreviousClose) * 100, 2)
     changeDirection = "+" if (valueChange > 0) else ""
-    output += (f'\n${stockCurrent:3g} {changeDirection}{valueChange} ({changeDirection}{percentChange}%)', "\n")
+    output += f'\n${stockCurrent:3g} {changeDirection}{valueChange} ({changeDirection}{percentChange}%)' + "\n"
 
     weeklyTrend = stock.history(period="5d")
     output += ("Weekly Trend:\n")
-    output += weeklyTrend.toString() + '\n'
+    output += weeklyTrend.to_string() + '\n'
 
     return output
 
