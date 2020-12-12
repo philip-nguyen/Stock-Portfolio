@@ -9,15 +9,17 @@ import datetime
 def invest(investmentAmount):
 
     print("-------------------------- Ethical Investing --------------------------")
+    output = "------------ Ethical Investing ------------\n"
+    output += f'Amount for Strategy: ${investmentAmount}\n'
     # Ethical Investing - investing in companies that promote
     # ethical practices and ethical products.
     # Choices include prominent wind energy companies
 
-    # General Electric - electric company
+    # NextEra Energy Inc - generates electricity through wind, solar and natural gas
     stockSymbol1 = "NEE"
     stockSymbol1 = stockSymbol1.upper()
 
-    # NextEra Energy Inc - generates electricity through wind, solar and natural gas
+    # General Electric - electric company
     stockSymbol2 = "GE"
     stockSymbol2 = stockSymbol2.upper()
 
@@ -28,7 +30,7 @@ def invest(investmentAmount):
     try:
         print("-------------------------- Stock 1 --------------------------")
         division = float(investmentAmount*0.6)
-        output = "Money division: (60%) $" + str(division) + "\n"
+        output += "Money division: (60%) $" + str(division) + "\n"
         print("Generating data from yfinance...")
         output += printStockInfo(stockSymbol1) + "\n"
 
