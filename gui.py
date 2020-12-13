@@ -37,7 +37,7 @@ class StockPortfolio(QWidget):
 
         # Add Label and LineEdit
         # investmentLabel = QLabel(self)
-        self.investmentLabel.setText("Amount ($):")
+        self.investmentLabel.setText("Amount (> $5000):")
         self.investmentLabel.setStyleSheet("color: green")
         # self.investmentLabel.adjustSize()
         # self.investmentInput = QLineEdit(self)
@@ -83,6 +83,7 @@ class StockPortfolio(QWidget):
         endBox.addWidget(self.infoButton)
 
         resultBox = QVBoxLayout()
+        self.outputArea.setReadOnly(True)
         resultBox.addWidget(self.outputArea)
 
         # Put all widgets together
@@ -103,7 +104,8 @@ class StockPortfolio(QWidget):
                 + self.ValueCheckBox.isChecked()
         try:
             # IF there is 1-2 check boxes checked and there is an investment input
-            if 0 < numChecked <= 2 and self.investmentInput.text():
+            if 0 < numChecked <= 2 and self.investmentInput.text() \
+                    and float(self.investmentInput.text()) >= 5000.0:
 
                 if self.EthicalCheckBox.isChecked():
                     # Start thread to do yfinance API calls
@@ -137,11 +139,13 @@ class StockPortfolio(QWidget):
                     thread_v.join()
 
             elif not self.investmentInput.text():
-                self.showTextAreaResult("No Investment Input...\nPlease input an Investment")
+                self.showTextAreaResult("Error: No Investment Input...\nPlease input an Investment")
+            elif float(self.investmentInput.text()) < 5000.0:
+                self.showTextAreaResult("Error: Minimum Investment is $5000")
             elif numChecked > 2:
-                self.showTextAreaResult("Please select only 2 Investment Strategies")
+                self.showTextAreaResult("Error: Please select only 2 Investment Strategies")
             elif numChecked <= 0:
-                self.showTextAreaResult("Please select 1-2 Investment Strategies")
+                self.showTextAreaResult("Error: Please select 1-2 Investment Strategies")
 
 
         except:
