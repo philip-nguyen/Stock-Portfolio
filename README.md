@@ -1,5 +1,7 @@
 # Stock-Portfolio
-Using 5 different investment strategies, determine which stocks to invest in
+Using 5 different investment strategies, determine how much to invest in certain stocks. This is implemented using PyQt GUI library and yfinance API.
+
+![pyqt-ui-image](https://user-images.githubusercontent.com/55335418/102582235-001c9c80-40b7-11eb-9823-96cab9e8d318.png)
 
 ## Installation
 Make sure to install the dependencies
